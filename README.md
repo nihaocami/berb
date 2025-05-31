@@ -6,9 +6,9 @@
 
 ## 🛠️ To Do:
 
-- [] Auto-reconnect on network loss
-- [] Multi-file support
-- [] Save stream on supported browsers
+- [ ] Auto-reconnect on network loss
+- [ ] Multi-file support
+- [ ] Save stream on supported browsers
 
 ## 🧪 Want to Contribute?
 
