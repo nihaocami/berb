@@ -4,6 +4,17 @@
 
 > 🔒 Your files never touch a server — Berb connects users directly using WebRTC Data Channels for secure, fast transfers.
 
+## Development
+
+It really is super simple
+
+```shell
+
+npm install
+
+npm run start
+```
+
 ## 🛠️ To Do:
 
 - [ ] Auto-reconnect on network loss
