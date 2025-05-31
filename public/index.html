@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="rainbow.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="imgs/favicon.ico" type="image/x-icon" />
+    <title>Berb | Send Big Files Instantly & Privately</title>
+    <meta name="title" content="Berb | Send Big Files Instantly & Privately" />
+    <meta
+      name="description"
+      content="Berb lets you transfer large files securely via peer-to-peer WebRTC—no uploads, no limits, no servers. Fast, private, and free."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://berb.app/" />
+    <meta
+      property="og:title"
+      content="Berb | Send Big Files Instantly & Privately"
+    />
+    <meta
+      property="og:description"
+      content="Transfer massive files directly between devices. No cloud. No signup. Just send."
+    />
+    <meta property="og:image" content="https://berb.app/imgs/logo.svg" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://berb.app/" />
+    <meta
+      property="twitter:title"
+      content="Berb | Send Big Files Instantly & Privately"
+    />
+    <meta
+      property="twitter:description"
+      content="Private file transfers using WebRTC. No limits. No uploads. Just P2P freedom."
+    />
+    <meta property="twitter:image" content="https://berb.app/imgs/logo.svg" />
+
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="send big files, p2p file transfer, private file sharing, webrtc file transfer, berb app, secure file sharing, fast file send tool"
+    />
+    <meta name="author" content="Berb" />
+  </head>
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-Z3ZTLR2F6F"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    if (window.location.hostname.includes("berb")) {
+      gtag("config", "G-Z3ZTLR2F6F");
+    }
+  </script>
+  <body>
+    <section class="wrapper">
+      <div class="rainbow"> </div>
+      <div class="content">
+        <div class="nav glass">
+          <img src="imgs/logo.svg" alt="berb" />
+          <div class="nav-controls">
+            <a href="/about.html"
+              >P2P File Sharing<img src="imgs/lock.svg" alt=""
+            /></a>
+          </div>
+          <div id="nav-progress" class="nav-progress hidden">
+            <p>Transferring</p>
+            <div class="nav-progress-percent" id="nav-progress-percent">
+              0%</div
+            >
+          </div>
+        </div>
+        <div class="dashboard glass" id="connectView">
+          <div id="loading" class="loading">
+            <div class="loading-dot-box">
+              <img src="imgs/loader.svg" alt="" />
+            </div>
+          </div>
+          <div id="connectionHints" class="dash-tips hidden">
+            <div>
+              <h1 id="dash-title">Pair Devices</h1>
+              <p id="dash-description"
+                >To send a file, open this session on the other device to get
+                started.</p
+              >
+            </div>
+          </div>
+          <div id="connectionControls" class="dash-controls hidden">
+            <div id="qrcode" class="cta-container"></div>
+
+            <div id="copyLink" class="control-status">
+              <p>Copy session link</p>
+              <img src="imgs/copy.png" alt="copy" />
+            </div>
+          </div>
+        </div>
+        <div class="dashboard hidden glass" id="transferView">
+          <p id="minimize">—</p>
+          <div class="dash-tips">
+            <div>
+              <h1 id="dash-title">Let's get berbing!</h1>
+
+              <p id="dash-description" class="warn-text"
+                >Due to mobile browser limits, please keep your tabs open and in
+                focus while files are being transferred.</p
+              >
+            </div>
+          </div>
+          <div class="dash-controls">
+            <div id="upload" class="cta-container">
+              <div id="upload-btns" class="flex-col">
+                <img src="imgs/upload.png" alt="" />
+                <p>Send a file</p>
+              </div>
+              <div id="progress-details" class="flex-col hidden">
+                <p>Transferring File</p>
+                <progress id="progress" value="0" max="100"></progress>
+                <p id="progress-num"></p>
+              </div>
+
+              <input type="file" name="" class="hidden" id="fileInput" />
+            </div>
+            <div class="control-status">
+              <p>You are linked</p>
+              <img src="imgs/check.png" alt="green check" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="featured"> </div>
+    <div class="credits">
+      <p class="credit-name"
+        >Photo by:
+        <a href="https://www.souvenirpixels.com" target="_blank"
+          >James Wheeler</a
+        >
+      </p>
+      <p class="credit-description"><i>Beautiful British Columbia</i></p>
+    </div>
+
+    <script src="berb.min.js"></script>
+  </body>
+</html>
