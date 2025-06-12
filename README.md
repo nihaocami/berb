@@ -18,7 +18,7 @@ npm run start
 ## 🛠️ To Do:
 
 - [ ] Auto-reconnect on network loss
-- [ ] Multi-file support
+- [x] Multi-file support
 - [ ] Save stream on supported browsers
 - [ ] Use random words for peer id (make it readable)
 - [ ] Share text between peers
