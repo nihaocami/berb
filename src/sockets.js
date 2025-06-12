@@ -118,7 +118,7 @@ function setupDataChannel(channel) {
 
         channel.send(JSON.stringify({ type: "sendProgress", progress }));
         receiveProgress = progress;
-        updateProgressDisplays(receiveProgress);
+        updateProgressDisplays(receiveProgress, meta.fileName);
       }
 
       if (meta.type == "sendProgress") {

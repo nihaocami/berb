@@ -3,61 +3,83 @@ import { dataChannel } from "./sockets";
 import { showToast } from "./toast";
 import { toggleUploadBtns } from "./util";
 
-let fileSize = null;
-let offset = null;
+const chunkSize = 16384; // 16KB
+const ONE_GB_IN_BYTES = 1 * 1024 * 1024 * 1024; // 1 GB
+
 export const sendFile = () => {
-  const file = fileInput.files[0];
-  if (!file || !dataChannel || dataChannel.readyState !== "open") return;
-
-  const chunkSize = 16384; // 16KB
-  let offset = 0;
-
-  const reader = new FileReader();
-  const ONE_GB_IN_BYTES = 1 * 1024 * 1024 * 1024; // 1 GB = 1,073,741,824 bytes
-  gtag("event", "fileselected");
-  if (file.size > ONE_GB_IN_BYTES) {
-    gtag("event", "largefile");
-    showToast("Due to browser limits, we only allow 1GB or less per transfer.");
+  const files = fileInput.files;
+  if (
+    !files ||
+    files.length === 0 ||
+    !dataChannel ||
+    dataChannel.readyState !== "open"
+  )
     return;
-  }
 
-  dataChannel.send(JSON.stringify({ type: "toggleUploadBtns" }));
-  toggleUploadBtns();
+  let fileIndex = 0;
 
-  const readSlice = (o) => {
-    const slice = file.slice(o, o + chunkSize);
-    reader.readAsArrayBuffer(slice);
-  };
+  const sendNextFile = () => {
+    const file = files[fileIndex];
+    if (!file) return;
 
-  reader.onload = (e) => {
-    const chunk = e.target.result;
-
-    // Wait until buffer is low
-    if (dataChannel.bufferedAmount > 1_000_000) {
-      dataChannel.addEventListener("bufferedamountlow", function handler() {
-        dataChannel.removeEventListener("bufferedamountlow", handler);
-        reader.onload(e); // retry sending this chunk
-      });
+    if (file.size > ONE_GB_IN_BYTES) {
+      gtag("event", "largefile");
+      showToast(`File "${file.name}" exceeds 1GB limit. Skipping.`);
+      fileIndex++;
+      sendNextFile(); // skip this file
       return;
     }
 
-    try {
-      dataChannel.send(chunk);
-      offset += chunk.byteLength;
-      dataChannel.send(
-        JSON.stringify({ type: "receiveProgress", fileSize: file.size, offset })
-      );
+    gtag("event", "fileselected");
+    dataChannel.send(JSON.stringify({ type: "toggleUploadBtns" }));
+    toggleUploadBtns();
 
-      if (offset < file.size) {
-        readSlice(offset);
-      } else {
-        dataChannel.send(JSON.stringify({ done: true, filename: file.name }));
+    let offset = 0;
+    const reader = new FileReader();
+
+    const readSlice = (o) => {
+      const slice = file.slice(o, o + chunkSize);
+      reader.readAsArrayBuffer(slice);
+    };
+
+    reader.onload = (e) => {
+      const chunk = e.target.result;
+
+      if (dataChannel.bufferedAmount > 1_000_000) {
+        dataChannel.addEventListener("bufferedamountlow", function handler() {
+          dataChannel.removeEventListener("bufferedamountlow", handler);
+          reader.onload(e); // retry
+        });
+        return;
       }
-    } catch (err) {
-      alert("Send error: " + err.message);
-      gtag("event", "sendfailed", { message: err.message });
-    }
+
+      try {
+        dataChannel.send(chunk);
+        offset += chunk.byteLength;
+        dataChannel.send(
+          JSON.stringify({
+            type: "receiveProgress",
+            fileName: file.name,
+            fileSize: file.size,
+            offset,
+          })
+        );
+
+        if (offset < file.size) {
+          readSlice(offset);
+        } else {
+          dataChannel.send(JSON.stringify({ done: true, filename: file.name }));
+          fileIndex++;
+          sendNextFile(); // move to next file
+        }
+      } catch (err) {
+        alert("Send error: " + err.message);
+        gtag("event", "sendfailed", { message: err.message });
+      }
+    };
+
+    readSlice(0);
   };
 
-  readSlice(0);
+  sendNextFile();
 };

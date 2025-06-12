@@ -5,6 +5,7 @@ import {
   progressPercent,
   transferView,
   connectView,
+  fileNameDisplay,
 } from "./elements";
 import { showToast } from "./toast";
 
@@ -76,9 +77,10 @@ export const toggleUploadBtns = () => {
  * @param {float} progress
  */
 
-export const updateProgressDisplays = (progress) => {
+export const updateProgressDisplays = (progress, fileName) => {
   const value = Math.round(progress);
   progressBar.value = value;
+  fileNameDisplay.innerHTML = fileName;
   progressPercent.innerHTML = `${value}%`;
 };
 

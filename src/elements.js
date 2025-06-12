@@ -25,3 +25,5 @@ export const loadingSpinner = document.querySelector("#loading");
 
 export const connectionHints = document.querySelector("#connectionHints");
 export const connectionControls = document.querySelector("#connectionControls");
+
+export const fileNameDisplay = document.querySelector("#fileName");
