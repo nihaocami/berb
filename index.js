@@ -1,6 +1,7 @@
 const http = require("http");
 const WebSocket = require("ws");
 const express = require("express");
+const { generateSlug } = require("random-word-slugs");
 
 const app = express();
 
@@ -11,7 +12,8 @@ const wss = new WebSocket.Server({ server });
 let peers = new Map();
 
 wss.on("connection", (socket) => {
-  const id = crypto.randomUUID();
+  const words = generateSlug(2, { format: "lower" });
+  const id = words.replace(" ", "-");
   peers.set(id, socket);
   socket.send(JSON.stringify({ type: "id", id }));
 

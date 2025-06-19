@@ -13,8 +13,9 @@
   "license": "MIT",
   "dependencies": {
     "express": "^5.1.0",
+    "random-word-slugs": "^0.1.7",
     "toastify-js": "^1.12.0",
-    "ws": "^8.18.1",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "ws": "^8.18.1"
   }
 }
