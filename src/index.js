@@ -1,5 +1,4 @@
 import "./file";
-import "./observers";
 import "./eventListeners";
 import { connectPeers } from "./sockets";
 
