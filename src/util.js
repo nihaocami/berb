@@ -81,7 +81,7 @@ export const updateProgressDisplays = (progress, fileName) => {
   const value = Math.round(progress);
   progressBar.value = value;
   if (fileName) {
-    fileNameDisplay.innerHTML = fileName;
+    fileNameDisplay.innerHTML = shortenFileName(fileName, 10);
   }
   progressPercent.innerHTML = `${value}%`;
 };
@@ -93,3 +93,31 @@ export const toggleSteps = () => {
   transferView.classList.toggle("hidden");
   connectView.classList.toggle("hidden");
 };
+
+/**
+ * given a file name as a string, we can shorten it to a max length
+ *
+ * @param {string} filename
+ * @param {number} maxLength
+ * @returns
+ */
+export function shortenFileName(filename, maxLength = 10) {
+  const dotIndex = filename.lastIndexOf(".");
+  if (dotIndex === -1 || dotIndex === 0) {
+    // No extension or hidden file
+    return filename.length > maxLength
+      ? filename.slice(0, maxLength - 1) + "…"
+      : filename;
+  }
+
+  const name = filename.slice(0, dotIndex);
+  const ext = filename.slice(dotIndex);
+
+  // If the extension is too long to fit anything else
+  if (ext.length >= maxLength - 1) {
+    return "…" + ext.slice(-(maxLength - 1));
+  }
+
+  const namePart = name.slice(0, maxLength - ext.length - 1); // Reserve 1 char for ellipsis
+  return name.length + ext.length > maxLength ? namePart + "…" + ext : filename;
+}

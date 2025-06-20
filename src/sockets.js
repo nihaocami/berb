@@ -124,14 +124,20 @@ function setupDataChannel(channel) {
 
         const progress = getProgress(fileSize, offset);
 
-        channel.send(JSON.stringify({ type: "sendProgress", progress }));
+        channel.send(
+          JSON.stringify({
+            type: "sendProgress",
+            progress,
+            fileName: meta.fileName,
+          })
+        );
         receiveProgress = progress;
         updateProgressDisplays(receiveProgress, meta.fileName);
       }
 
       if (meta.type == "sendProgress") {
         sendProgress = meta.progress;
-        updateProgressDisplays(sendProgress);
+        updateProgressDisplays(sendProgress, meta.fileName);
         if (sendProgress === 100) {
           toggleUploadBtns();
           gtag("event", "filesent");
