@@ -7,7 +7,7 @@ export const fileInput = document.getElementById("fileInput");
 export const connectView = document.querySelector("#connectView");
 export const transferView = document.querySelector("#transferView");
 
-export const qrCodeContainer = document.getElementById("qrcode");
+export const qrCodeContainer = document.querySelector("#qrcode");
 
 export const copyLinkButton = document.querySelector("#copyLink");
 
@@ -27,3 +27,12 @@ export const connectionHints = document.querySelector("#connectionHints");
 export const connectionControls = document.querySelector("#connectionControls");
 
 export const fileNameDisplay = document.querySelector("#fileName");
+export const startSessionBtn = document.querySelector("#startSession");
+
+export const initView = document.querySelector("#initView");
+
+export const connectMagicWordBtn = document.querySelector(
+  "#connectMagicWordBtn"
+);
+export const magicWordInput = document.querySelector("#magicWordInput");
+export const magicWordDisplay = document.querySelector("#magicWordDisplay");

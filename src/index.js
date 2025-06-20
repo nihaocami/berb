@@ -1,8 +1,11 @@
-import { connectPeers } from "./sockets";
 import "./file";
 import "./observers";
 import "./eventListeners";
+import { connectPeers } from "./sockets";
 
-setTimeout(() => {
-  connectPeers();
-}, 2000);
+const urlParams = new URLSearchParams(window.location.search);
+const peerID = urlParams.get("peer");
+
+if (peerID) {
+  connectPeers(peerID);
+}

@@ -15,11 +15,47 @@
   --shadow: 0px 0px 10px rgba(10, 10, 10, 0.13);
   --control-bg-color: rgb(246, 246, 246);
   --control-bg-color-ver: rgb(183, 183, 183);
+  --divider-color: #acacac;
 }
 body {
   margin: 0;
   position: relative;
   min-height: 100vh;
+}
+input[type="text"] {
+  border: none;
+  padding: 10px 15px;
+  max-width: 200px;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+input::placeholder {
+  text-transform: none;
+}
+.col {
+  flex-direction: column;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--divider-color);
+  gap: 5px;
+  font-size: 12px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.divider div {
+  background-color: var(--divider-color);
+  height: 1px;
+  width: 100%;
 }
 .gap {
   width: 20px;
@@ -313,13 +349,27 @@ footer {
 
 .btn {
   padding: 15px 10px;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  max-width: 200px;
+  cursor: pointer;
 }
 
 .btn-primary {
   background-color: black;
   color: white;
   text-decoration: none;
+}
+
+.btn-secondary {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.btn-secondary:hover {
+  background-color: rgb(203, 203, 203);
 }
 
 .btn-primary:hover {

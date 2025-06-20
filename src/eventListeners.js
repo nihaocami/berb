@@ -4,8 +4,14 @@ import {
   fileInput,
   transferView,
   uploadContainer,
+  startSessionBtn,
+  initView,
+  connectView,
+  connectMagicWordBtn,
+  magicWordInput,
 } from "./elements";
 import { sendFile } from "./file";
+import { connectPeers } from "./sockets";
 
 // minimize transfer window
 minimizeButton.addEventListener("click", (e) => {
@@ -27,4 +33,18 @@ fileInput.addEventListener("change", () => {
 uploadContainer.addEventListener("click", () => {
   gtag("event", "fileclicked");
   fileInput.click();
+});
+
+startSessionBtn.addEventListener("click", () => {
+  initView.classList.toggle("hidden");
+  connectView.classList.toggle("hidden");
+});
+
+connectMagicWordBtn.addEventListener("click", () => {
+  const magicWord = magicWordInput.value;
+  if (magicWord) {
+    initView.classList.toggle("hidden");
+    connectPeers(magicWord.toUpperCase());
+    connectView.classList.toggle("hidden");
+  }
 });

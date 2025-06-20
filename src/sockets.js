@@ -1,4 +1,11 @@
-import { qrCodeContainer, copyLinkButton } from "./elements";
+import {
+  qrCodeContainer,
+  copyLinkButton,
+  magicWordDisplay,
+  initView,
+  connectView,
+  transferView,
+} from "./elements";
 import {
   copyToClipboard,
   updateProgressDisplays,
@@ -8,7 +15,7 @@ import {
 } from "./util";
 const protocol = window.location.protocol;
 const host = window.location.host;
-const ws = new WebSocket(`${protocol === "https:" ? "wss" : "ws"}://${host}`);
+let ws = new WebSocket(`${protocol === "https:" ? "wss" : "ws"}://${host}`);
 
 let sendProgress = 0;
 let receiveProgress = 0;
@@ -23,9 +30,10 @@ ws.onmessage = async (msg) => {
   if (data.type === "id") {
     const localId = data.id;
     const sessionLink = `${protocol}//${host}/?peer=${localId}`;
+    magicWordDisplay.innerHTML = localId;
     new QRCode(qrCodeContainer, sessionLink);
-    copyLinkButton.addEventListener("click", () => {
-      copyToClipboard(sessionLink);
+    magicWordDisplay.addEventListener("click", () => {
+      copyToClipboard(localId);
     });
   } else if (data.type === "offer") {
     await createAnswer(data.offer, data.from);
@@ -45,13 +53,11 @@ ws.onmessage = async (msg) => {
  *
  * @returns void
  */
-export const connectPeers = async () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const peer = urlParams.get("peer");
-  if (!peer) {
+export const connectPeers = async (peerID) => {
+  if (!peerID) {
     return;
   }
-  const remoteId = peer;
+  const remoteId = peerID;
   peerConnection = new RTCPeerConnection();
 
   dataChannel = peerConnection.createDataChannel("file");
@@ -101,7 +107,9 @@ function sendToServer(msg) {
  */
 function setupDataChannel(channel) {
   channel.onopen = () => {
-    toggleSteps();
+    initView.classList.add("hidden");
+    connectView.classList.add("hidden");
+    transferView.classList.remove("hidden");
   };
 
   channel.onmessage = (event) => {

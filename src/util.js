@@ -80,7 +80,9 @@ export const toggleUploadBtns = () => {
 export const updateProgressDisplays = (progress, fileName) => {
   const value = Math.round(progress);
   progressBar.value = value;
-  fileNameDisplay.innerHTML = fileName;
+  if (fileName) {
+    fileNameDisplay.innerHTML = fileName;
+  }
   progressPercent.innerHTML = `${value}%`;
 };
 

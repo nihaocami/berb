@@ -13,7 +13,7 @@ let peers = new Map();
 
 wss.on("connection", (socket) => {
   const words = generateSlug(2, { format: "lower" });
-  const id = words.replace(" ", "-");
+  const id = words.replace(" ", "-").toUpperCase();
   peers.set(id, socket);
   socket.send(JSON.stringify({ type: "id", id }));
 

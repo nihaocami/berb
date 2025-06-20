@@ -4,6 +4,8 @@
 
 > 🔒 Your files never touch a server — Berb connects users directly using WebRTC Data Channels for secure, fast transfers.
 
+If you want to learn more please refer to our [docs](/docs/index.md)
+
 ## Development
 
 It really is super simple
