@@ -22,9 +22,9 @@ npm run start
 - [ ] Auto-reconnect on network loss
 - [x] Multi-file support
 - [ ] Save stream on supported browsers
-- [ ] Use random words for peer id (make it readable)
+- [x] Use random words for peer id (make it readable)
 - [ ] Share text between peers
-- [ ] Allow pairing via keyword
+- [x] Allow pairing via keyword
 
 ## 🧪 Want to Contribute?
 
