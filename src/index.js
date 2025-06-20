@@ -3,9 +3,11 @@ import "./observers";
 import "./eventListeners";
 import { connectPeers } from "./sockets";
 
-const urlParams = new URLSearchParams(window.location.search);
-const peerID = urlParams.get("peer");
+setTimeout(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const peerID = urlParams.get("peer");
 
-if (peerID) {
-  connectPeers(peerID);
-}
+  if (peerID) {
+    connectPeers(peerID);
+  }
+}, 2000);
