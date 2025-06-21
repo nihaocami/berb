@@ -144,6 +144,9 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .loading-dot-box {

@@ -88,7 +88,7 @@
               data-size="large"
               data-show-count="true"
               aria-label="Star nihaocami/berb on GitHub"
-              >Learn more</a
+              >View source</a
             >
           </div>
           <div id="nav-progress" class="nav-progress hidden">
@@ -98,34 +98,44 @@
             >
           </div>
         </div>
-        <div class="dashboard glass col" id="initView">
-          <h1>Need to send files?</h1>
-
-          <button class="btn btn-primary" id="startSession"
-            >Start a session</button
-          >
-          <div class="divider"><div></div><span>or</span><div></div></div>
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-              flex-direction: column;
-            "
-          >
-            <input
-              style="text-transform: uppercase"
-              id="magicWordInput"
-              type="text"
-              placeholder="Enter Magic Word"
-            />
-            <button
-              id="connectMagicWordBtn"
-              style="padding: 10px"
-              class="btn btn-secondary"
-              >Connect</button
+        <div class="dashboard glass" id="initView">
+          <div id="loading" class="loading">
+            <div class="loading-dot-box">
+              <img src="imgs/loader.svg" alt="" /> </div
+          ></div>
+          <div style="flex: 1">
+            <h1>Need to send files?</h1>
+            <p id="dash-description"
+              >Berb let's you send files securely between devices.</p
             >
+          </div>
+          <div class="col" style="display: flex; gap: 10px">
+            <button class="btn btn-primary" id="startSession"
+              >Start a session</button
+            >
+            <div class="divider"><div></div><span>or</span><div></div></div>
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                flex-direction: column;
+              "
+            >
+              <input
+                style="text-transform: uppercase"
+                id="magicWordInput"
+                type="text"
+                placeholder="Enter Magic Word"
+              />
+              <button
+                id="connectMagicWordBtn"
+                style="padding: 10px"
+                class="btn btn-secondary"
+                >Connect</button
+              >
+            </div>
           </div>
         </div>
         <div class="dashboard hidden glass" id="connectView">
@@ -133,8 +143,7 @@
             <div>
               <h1 id="dash-title">Pair Devices</h1>
               <p id="dash-description"
-                >To send a file, open this session on the other device to get
-                started.</p
+                >To send a file, open this session on the other device.</p
               >
             </div>
           </div>
