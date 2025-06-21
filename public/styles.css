@@ -29,6 +29,7 @@ input[type="text"] {
   border-radius: 5px;
   box-shadow: var(--shadow);
   text-align: center;
+  font-size: 1em;
 }
 
 input:focus::placeholder {
@@ -356,6 +357,7 @@ footer {
   border: none;
   width: 100%;
   max-width: 200px;
+  font-size: 1em;
   cursor: pointer;
 }
 
