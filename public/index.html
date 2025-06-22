@@ -170,11 +170,18 @@
           <p id="minimize">—</p>
           <div class="dash-tips">
             <div>
-              <h1 id="dash-title">Let's get berbing!</h1>
+              <h1 id="dash-title">Berb it!</h1>
 
-              <p id="dash-description" class="warn-text"
-                >Due to mobile browser limits, please keep your tabs open and in
-                focus while files are being transferred.</p
+              <p id="dash-description" class="dash-tips"
+                >Select what you want to send.</p
+              >
+              <button id="fileModeBtn" class="btn btn-primary transfer-type-btn"
+                >File</button
+              >
+              <button
+                id="textModeBtn"
+                class="btn btn-secondary transfer-type-btn"
+                >Text</button
               >
             </div>
           </div>
@@ -201,6 +208,12 @@
                 class="hidden"
                 id="fileInput"
               />
+            </div>
+            <div id="textView" class="cta-container hidden">
+              <textarea
+                id="textContent"
+                placeholder="Enter your text here"
+              ></textarea>
             </div>
             <div class="control-status">
               <p>You are linked</p>

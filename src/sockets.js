@@ -5,6 +5,11 @@ import {
   initView,
   connectView,
   transferView,
+  fileModeBtn,
+  textModeBtn,
+  textView,
+  uploadContainer,
+  textContent,
 } from "./elements";
 import {
   copyToClipboard,
@@ -12,6 +17,7 @@ import {
   toggleSteps,
   toggleUploadBtns,
   getProgress,
+  toggleTransferMode,
 } from "./util";
 const protocol = window.location.protocol;
 const host = window.location.host;
@@ -117,6 +123,15 @@ function setupDataChannel(channel) {
       const meta = JSON.parse(event.data);
       if (meta.type === "toggleUploadBtns") {
         toggleUploadBtns();
+      }
+      if (meta.type === "fileMode") {
+        toggleTransferMode("fileMode");
+      }
+      if (meta.type === "textMode") {
+        toggleTransferMode("textMode");
+      }
+      if (meta.type === "textContent") {
+        textContent.value = meta.data;
       }
       if (meta.type == "receiveProgress") {
         fileSize = meta.fileSize;

@@ -23,7 +23,7 @@ npm run start
 - [x] Multi-file support
 - [ ] Save stream on supported browsers
 - [x] Use random words for peer id (make it readable)
-- [ ] Share text between peers
+- [x] Share text between peers
 - [x] Allow pairing via keyword
 
 ## 🧪 Want to Contribute?

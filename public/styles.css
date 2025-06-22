@@ -22,6 +22,20 @@ body {
   position: relative;
   min-height: 100vh;
 }
+
+#textContent {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  resize: initial;
+  min-height: 200px;
+  outline: none;
+}
+.transfer-type-btn {
+  padding: 10px !important;
+  margin-bottom: 10px;
+  max-width: 100% !important;
+}
 input[type="text"] {
   border: none;
   padding: 10px 15px;
@@ -206,6 +220,7 @@ input::placeholder {
   border-radius: 15px;
   box-shadow: var(--shadow);
   width: 100%;
+  aspect-ratio: 1/1;
 }
 
 .warn-text {
@@ -370,7 +385,7 @@ footer {
 .btn-secondary {
   color: black;
   background-color: white;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .btn-secondary:hover {

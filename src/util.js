@@ -6,6 +6,10 @@ import {
   transferView,
   connectView,
   fileNameDisplay,
+  fileModeBtn,
+  textModeBtn,
+  textView,
+  uploadContainer,
 } from "./elements";
 import { showToast } from "./toast";
 
@@ -13,12 +17,13 @@ import { showToast } from "./toast";
  * copy any string to clipboard. Support for multiple browsers
  *
  * @param {string} value
+ * @param {string} message
  * @returns void
  */
-export const copyToClipboard = (value) => {
+export const copyToClipboard = (value, message = "Copied to clipboard!") => {
   if (navigator.clipboard && window.isSecureContext) {
     // Modern method
-    showToast("Copied link to clipboard!");
+    showToast(message);
     return navigator.clipboard.writeText(value).catch((err) => {
       console.error("Clipboard write failed:", err);
       showToast("Failed to copy");
@@ -121,3 +126,23 @@ export function shortenFileName(filename, maxLength = 10) {
   const namePart = name.slice(0, maxLength - ext.length - 1); // Reserve 1 char for ellipsis
   return name.length + ext.length > maxLength ? namePart + "…" + ext : filename;
 }
+
+/**
+ * Sets the UI mode by toggling button styles and visibility of elements.
+ *
+ * @param {"fileMode" | "textMode"} mode - The current mode to switch to.
+ * - `"fileMode"` shows the file upload UI.
+ * - `"textMode"` shows the text input UI.
+ */
+export const toggleTransferMode = (mode) => {
+  const isFile = mode === "fileMode";
+
+  fileModeBtn.classList.toggle("btn-primary", isFile);
+  fileModeBtn.classList.toggle("btn-secondary", !isFile);
+
+  textModeBtn.classList.toggle("btn-primary", !isFile);
+  textModeBtn.classList.toggle("btn-secondary", isFile);
+
+  textView.classList.toggle("hidden", isFile); // Show in textMode
+  uploadContainer.classList.toggle("hidden", !isFile); // Show in fileMode
+};

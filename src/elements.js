@@ -36,3 +36,9 @@ export const connectMagicWordBtn = document.querySelector(
 );
 export const magicWordInput = document.querySelector("#magicWordInput");
 export const magicWordDisplay = document.querySelector("#magicWordDisplay");
+
+export const fileModeBtn = document.querySelector("#fileModeBtn");
+export const textModeBtn = document.querySelector("#textModeBtn");
+
+export const textContent = document.querySelector("#textContent");
+export const textView = document.querySelector("#textView");
